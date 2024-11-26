@@ -1,0 +1,51 @@
+.header {
+    background-color: #007bff;
+    padding: 15px 0;
+    color: white;
+}
+.header .logo {
+    max-height: 50px;
+}
+.header .header-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-left: 20px;
+}
+.header .login-info {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.header .login-info span {
+    margin-right: 15px;
+    font-weight: bold;
+    color: #ffffff;
+}
+.btn-danger {
+    background-color: #dc3545;
+    border: none;
+}
+.btn-danger:hover {
+    background-color: #c82333;
+}
+.btn-success {
+    background-color: #28a745;
+    border: none;
+}
+.btn-success:hover {
+    background-color: #218838;
+}
+.btn-warning {
+    background-color: #ffc107;
+    border: none;
+}
+.btn-warning:hover {
+    background-color: #e0a800;
+}
+.btn-secondary {
+    background-color: #6c757d;
+    border: none;
+}
+.btn-secondary:hover {
+    background-color: #5a6268;
+}

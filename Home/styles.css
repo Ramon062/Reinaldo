@@ -1,0 +1,59 @@
+/* Estilo para a página Home */
+body {
+    background-color: #f1f3f5; /* Fundo mais suave para contrastar com o card */
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Estilos do Card */
+.home-card {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 15px;
+    background-color: #0357703b; /* Cor de fundo do card */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Sombramento mais forte */
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    z-index: 2; /* Garante que o card estará acima de outros elementos */
+}
+
+/* Efeito ao passar o mouse sobre o card */
+.home-card:hover {
+    transform: translateY(-15px); /* Eleva o card ao passar o mouse */
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3); /* Sombramento mais intenso */
+}
+
+/* Estilo do título do card */
+.card-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Estilo do texto do card */
+.card-text {
+    font-size: 16px;
+    color: #666;
+}
+
+/* Estilo do botão */
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+}
+
+/* Centralização do conteúdo da página */
+.container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

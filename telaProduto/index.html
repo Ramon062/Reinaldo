@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos - Papelaria</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css"> <!-- Referência ao arquivo CSS externo -->
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center">
+                <img src="https://via.placeholder.com/50" alt="logo" class="logo">
+                <div class="header-title">Papel & Sonho</div>
+            </div>
+            <div class="login-info">
+                <span>Usuário Logado</span>
+                <button class="btn btn-danger">Logout</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2 class="mt-5">Produtos</h2>
+
+        <div id="produtos" class="row">
+        </div>
+
+        <div id="carrinhoDiv" class="mt-4">
+            <h4>Produtos no Carrinho:</h4>
+            <ul id="carrinhoLista" class="list-group">
+            </ul>
+        </div>
+
+        <h4 id="totalPreco" class="mt-4">Preço Total: R$ 0.00</h4>
+        <button class="btn btn-primary mt-4" id="finalizarCompraBtn" onclick="finalizarCompra()">Finalizar Compra (<span id="quantidadeTotal">0</span> itens)</button>
+        <button class="btn btn-warning mt-4 ml-2" onclick="limparCarrinho()">Limpar Carrinho</button>
+        <button class="btn btn-secondary mt-4 ml-2" onclick="window.location.href='index.html'">Voltar ao Login</button>
+    </div>
+
+    <script>
+        const produtos = [
+            { id: 1, nome: 'Caneta Azul', preco: 3.50, descricao: 'Caneta azul para escrita', marca: 'Faber-Castell', imagem: '../img/caneta (1).jpg' },
+            { id: 2, nome: 'Caderno', preco: 15.00, descricao: 'Caderno capa dura, 100 folhas', marca: 'Tilibra', imagem: '../img/cadeno (1).jpg' },
+            { id: 3, nome: 'Lápis', preco: 2.00, descricao: 'Lápis HB para escrever', marca: 'BIC', imagem: '../img/lapiss (1).jpg' },
+            { id: 4, nome: 'Régua', preco: 5.00, descricao: 'Régua de madeira, 30cm', marca: 'Tris', imagem: '../img/regua (1).jpg' },
+            { id: 5, nome: 'Borrachas', preco: 1.50, descricao: 'Borrachas de boa qualidade', marca: 'Mercur', imagem: '../img/borracha (1).jpg' },
+            { id: 6, nome: 'Mochila Escolar', preco: 80.00, descricao: 'Mochila com várias divisórias', marca: 'Carmim', imagem: '../img/mochila (1).jpg' },
+            { id: 7, nome: 'Marcadores', preco: 6.00, descricao: 'Marcadores em diversas cores', marca: 'Sharpie', imagem: '../img/marcador (1).jpg' },
+            { id: 8, nome: 'Tesoura', preco: 7.00, descricao: 'Tesoura de aço com cabo ergonômico', marca: 'Westcott', imagem: '../img/tesoura (1).jpg' },
+            { id: 9, nome: 'Agenda 2024', preco: 20.00, descricao: 'Agenda com capa em couro', marca: 'Moleskine', imagem: '../img/agenda (1).jpg' },
+            { id: 10, nome: 'Clips', preco: 1.00, descricao: 'Clips para papel', marca: 'Dello', imagem: '../img/clipes (1).jpg' }
+        ];
+
+        const carrinho = [];
+        let quantidadeTotal = 0;
+        let precoTotal = 0;
+
+        function adicionarAoCarrinho(produto) {
+            const quantidade = document.getElementById(`quantidade-${produto.id}`).value;
+            if (!quantidade || quantidade <= 0) {
+                alert('Por favor, escolha uma quantidade válida!');
+                return;
+            }
+
+            const produtoNoCarrinho = carrinho.find(item => item.id === produto.id);
+
+            if (produtoNoCarrinho) {
+                produtoNoCarrinho.quantidade += parseInt(quantidade);
+            } else {
+                carrinho.push({ ...produto, quantidade: parseInt(quantidade) });
+            }
+
+            quantidadeTotal += parseInt(quantidade);
+            precoTotal += produto.preco * quantidade;
+
+            atualizarCarrinho();
+            atualizarQuantidadeTotal();
+            atualizarPrecoTotal();
+        }
+
+        function renderizarProdutos() {
+            const produtosDiv = document.getElementById('produtos');
+            produtosDiv.innerHTML = '';
+
+            produtos.forEach(produto => {
+                const produtoDiv = document.createElement('div');
+                produtoDiv.classList.add('col-md-4', 'mb-4');
+                produtoDiv.innerHTML = `
+                    <div class="card">
+                        <img src="${produto.imagem}" class="card-img-top" alt="${produto.nome}">
+                        <div class="card-body">
+                            <h5 class="card-title">${produto.nome}</h5>
+                            <p><strong>Preço:</strong> R$ ${produto.preco.toFixed(2)}</p>
+                            <p><strong>Descrição:</strong> ${produto.descricao}</p>
+                            <p><strong>Marca:</strong> ${produto.marca}</p>
+                            <input type="number" id="quantidade-${produto.id}" class="form-control" value="1" min="1">
+                            <button class="btn btn-success mt-2" onclick='adicionarAoCarrinho(${JSON.stringify(produto)})'>Adicionar ao Carrinho</button>
+                        </div>
+                    </div>
+                `;
+                produtosDiv.appendChild(produtoDiv);
+            });
+        }
+
+        function atualizarCarrinho() {
+            const carrinhoLista = document.getElementById('carrinhoLista');
+            carrinhoLista.innerHTML = '';
+
+            carrinho.forEach(item => {
+                const itemLi = document.createElement('li');
+                itemLi.classList.add('list-group-item');
+                itemLi.textContent = `${item.nome} - Quantidade: ${item.quantidade} - Marca: ${item.marca} - Preço Unitário: R$ ${item.preco.toFixed(2)} - Total: R$ ${(item.preco * item.quantidade).toFixed(2)}`;
+                carrinhoLista.appendChild(itemLi);
+            });
+        }
+
+        function atualizarQuantidadeTotal() {
+            const quantidadeElement = document.getElementById('quantidadeTotal');
+            quantidadeElement.textContent = quantidadeTotal;
+        }
+
+        function atualizarPrecoTotal() {
+            const totalPrecoElement = document.getElementById('totalPreco');
+            totalPrecoElement.textContent = `Preço Total: R$ ${precoTotal.toFixed(2)}`;
+        }
+
+        function finalizarCompra() {
+            if (carrinho.length === 0) {
+                alert('Você precisa adicionar pelo menos um produto ao carrinho!');
+                return;
+            }
+
+            const carrinhoJSON = encodeURIComponent(JSON.stringify(carrinho));
+            window.location.href = `pagamento.html?carrinho=${carrinhoJSON}`;
+        }
+
+        function limparCarrinho() {
+            carrinho.length = 0;
+            quantidadeTotal = 0;
+            precoTotal = 0;
+
+            atualizarCarrinho();
+            atualizarQuantidadeTotal();
+            atualizarPrecoTotal();
+        }
+
+        renderizarProdutos();
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
