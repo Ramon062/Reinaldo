@@ -1,0 +1,38 @@
+/* Estilos gerais */
+body {
+    background-color: #007bff63;
+    font-family: Arial, sans-serif;
+}
+
+/* Estilos para os cards */
+.card {
+    box-shadow:#06dadaa9;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos do resumo do carrinho */
+#carrinhoResumo .list-group-item {
+    border-bottom: 1px solid #a73939;
+}
+
+/* Tamanho e estilos do botão */
+button {
+    width: 100%;
+}
+
+/* Estilo para o formulário */
+form {
+    background-color: #06dadaa9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+form .form-group {
+    margin-bottom: 1.5rem;
+}

@@ -1,0 +1,59 @@
+/* Estilos gerais */
+body {
+    background-color: #007bff63;
+    font-family: Arial, sans-serif;
+}
+
+/* Estilo para o Header */
+.header {
+    background-color: #007bff;
+    padding: 10px 0;
+    color: #fff;
+}
+
+.header .logo {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.header-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* Card com sombreamento e efeito de elevação */
+.card {
+    box-shadow: 0 8px 15px rgba(172, 15, 4, 0.301);
+    transition: transform 0.3s, box-shadow 0.3s;
+    border-radius: 10px;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(192, 9, 9, 0.979);
+}
+
+.card .form-group {
+    margin-bottom: 1.5rem;
+}
+
+/* Estilo da mensagem de sucesso */
+#mensagemSucesso {
+    display: none;
+}
+
+/* Melhorando o botão */
+.btn-success {
+    margin-top: 1rem;
+}
+
+/* Estilo do botão de logout */
+.btn-danger {
+    margin-left: 10px;
+}
+
+/* Estilo do botão de sugestão */
+.btn-info {
+    margin-left: 10px;
+}

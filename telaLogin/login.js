@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
       })
       .then((message) => {
         alert(message); // Exibe mensagem de sucesso
-        window.location.href = "produtos.html"; // Redireciona para a página de produtos
+        window.location.href = "../telaProduto/index.html"; // Redireciona para a página de produtos
       })
       .catch((error) => {
         alert("Erro: " + error.message);

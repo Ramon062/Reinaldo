@@ -1,25 +1,23 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const cadastroForm = document.getElementById('cadastroForm');
-  
-    cadastroForm.addEventListener('submit', (e) => {
-      e.preventDefault(); // Evita o envio padrão do formulário
-  
-      const nome = cadastroForm.name.value.trim();
-      const email = cadastroForm.email.value.trim();
-      const senha = cadastroForm.password.value.trim();
-      const cidade = cadastroForm.city.value.trim();
-      const estado = cadastroForm.state.value.trim();
-      const cep = cadastroForm.cep.value.trim();
-      const complemento = cadastroForm.complemento.value.trim();
-  
-      // Verifique se todos os campos obrigatórios foram preenchidos
-      if (!nome || !email || !senha || !cidade || !estado || !cep) {
-        alert('Por favor, preencha todos os campos obrigatórios.');
+document.getElementById("cadastroForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Impede o envio do formulário e a recarga da página
+
+    // Captura os valores dos campos do formulário
+    const nome = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const senha = document.getElementById("password").value;
+    const cidade = document.getElementById("cidade").value;
+    const estado = document.getElementById("estado").value;
+    const cep = document.getElementById("cep").value;
+    const complemento = document.getElementById("complemento").value;
+
+    // Valida os campos para garantir que todos foram preenchidos
+    if (!nome || !email || !senha || !cidade || !estado || !cep) {
+        alert("Por favor, preencha todos os campos obrigatórios!");
         return;
-      }
-  
-      // Envia os dados para o backend
-      const dados = {
+    }
+
+    // Cria o objeto usuario com os dados do formulário
+    const usuario = {
         nome: nome,
         email: email,
         senha: senha,
@@ -27,32 +25,33 @@ document.addEventListener('DOMContentLoaded', () => {
         estado: estado,
         cep: cep,
         complemento: complemento
-      };
-  
-      fetch('http://localhost:8080/cadastro', {
-        method: 'POST',
+    };
+
+    console.log("Enviando dados para o backend...");
+
+    // Envia a requisição de cadastro para o backend
+    fetch("http://localhost:8080/cadastro", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+            "Content-Type": "application/json"
         },
-        body: JSON.stringify(dados),
-      })
-        .then((response) => {
-          if (response.ok) {
-            return response.text();
-          } else {
-            return response.text().then((msg) => {
-              throw new Error(msg || 'Erro ao realizar o cadastro');
-            });
-          }
-        })
-        .then((message) => {
-          alert(message); // Mensagem de sucesso
-          window.location.href = 'index.html'; // Redireciona para a página de login
-        })
-        .catch((error) => {
-          alert('Erro: ' + error.message);
-          console.error('Erro ao realizar o cadastro:', error);
-        });
+        body: JSON.stringify(usuario)
+    })
+    .then(response => {
+        console.log("Resposta do servidor:", response);
+        if (!response.ok) {
+            return Promise.reject("Erro ao cadastrar o usuário");
+        }
+        return response.text();  // Alterado para response.text() se a resposta for um texto
+    })
+    .then(data => {
+        console.log("Cadastro bem-sucedido:", data);
+        // Caso o cadastro seja bem-sucedido, redireciona para a tela de login
+        alert("Cadastro realizado com sucesso!");
+        window.location.href = "../telaLogin/index.html"; // Ajuste o caminho, se necessário
+    })
+    .catch(error => {
+        console.error("Erro ao cadastrar o usuário:", error);
+        alert("Falha ao cadastrar. Tente novamente.");
     });
-  });
-  
+});

@@ -1,70 +1,51 @@
+/* Estilos gerais */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
+    background-color: #f4f4f4;
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  
-  .container {
-    background: #fff;
+}
+
+.container {
+    width: 50%;
+    margin: 0 auto;
     padding: 20px;
+    background-color: white;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
-  }
-  
-  h1 {
+    margin-top: 50px;
+}
+
+h1 {
     text-align: center;
     color: #333;
-  }
-  
-  form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  label {
-    margin: 10px 0 5px;
-    color: #555;
-  }
-  
-  input {
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: block;
+}
+
+input {
+    width: 100%;
     padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
     border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-bottom: 15px;
-  }
-  
-  button {
+}
+
+button {
+    width: 100%;
+    padding: 10px;
     background-color: #28a745;
     color: white;
-    padding: 10px;
     border: none;
-    border-radius: 4px;
-    cursor: pointer;
+    border-radius: 5px;
     font-size: 16px;
-  }
-  
-  button:hover {
+    cursor: pointer;
+}
+
+button:hover {
     background-color: #218838;
-  }
-  
-  p {
-    text-align: center;
-    margin-top: 10px;
-  }
-  
-  a {
-    color: #007bff;
-    text-decoration: none;
-  }
-  
-  a:hover {
-    text-decoration: underline;
-  }
-  
+}

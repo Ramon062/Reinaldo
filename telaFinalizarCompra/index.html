@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento - Papelaria</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header da Tela de Produtos -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="../telaProduto/index.html">Papelaria</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="../telaFinalizarCompra/index.html">Produtos</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h2>Resumo da Compra</h2>
+        
+        <!-- Exibição dos produtos do carrinho -->
+        <div class="card mb-4 p-3">
+            <h4>Produtos no Carrinho</h4>
+            <ul id="carrinhoResumo" class="list-group">
+                <!-- Os itens do carrinho serão preenchidos aqui -->
+            </ul>
+            <h4 class="mt-4">Preço Total: <span id="totalPreco"></span></h4>
+        </div>
+
+        <h4 class="mt-4">Forma de Pagamento</h4>
+
+        <!-- Formulário de pagamento -->
+        <form id="formPagamento">
+            <div class="form-group">
+                <label for="bandeiraCartao">Bandeira do Cartão</label>
+                <select class="form-control" id="bandeiraCartao" required>
+                    <option value="Visa">Visa</option>
+                    <option value="Mastercard">Mastercard</option>
+                    <option value="American Express">American Express</option>
+                    <!-- Caso queira adicionar mais bandeiras -->
+                    <option value="Elo">Elo</option>
+                    <option value="Hipercard">Hipercard</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="numeroCartao">Número do Cartão</label>
+                <input type="text" class="form-control" id="numeroCartao" maxlength="16" required pattern="\d{16}" placeholder="Digite o número do cartão">
+            </div>
+            <div class="form-group">
+                <label for="dataExpiracao">Data de Expiração</label>
+                <input type="month" class="form-control" id="dataExpiracao" required>
+            </div>
+            <div class="form-group">
+                <label for="codigoSeguranca">Código de Segurança</label>
+                <input type="text" class="form-control" id="codigoSeguranca" maxlength="3" required pattern="\d{3}" placeholder="Código de segurança">
+            </div>
+
+            <!-- Botão Finalizar Compra -->
+            <button type="button" class="btn btn-success mt-4" onclick="finalizarPagamento()">Finalizar Pedido</button>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

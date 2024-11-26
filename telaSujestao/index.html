@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>De uma Sugestão</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css"> <!-- Seu arquivo CSS -->
+</head>
+<body>
+    <div class="header">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center">
+                <img src="../img/logo.png" alt="logo" class="logo">
+                <div class="header-title">Papel & Sonho</div>
+            </div>
+            <div class="login-info">
+                <span>Usuário Logado</span>
+                <button class="btn btn-danger">Logout</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-5">
+        <h2>Envie sua Sugestão</h2>
+
+        <!-- Card com Efeito de Elevação -->
+        <div class="card p-4 mt-4 shadow-lg">
+            <h4>Preencha os dados do produto sugerido:</h4>
+            <form id="formSugestao">
+                <div class="form-group">
+                    <label for="nomeSugestao">Nome do Produto</label>
+                    <input type="text" class="form-control" id="nomeSugestao" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="descricaoSugestao">Descrição</label>
+                    <textarea class="form-control" id="descricaoSugestao" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="marcaSugestao">Marca</label>
+                    <input type="text" class="form-control" id="marcaSugestao" required>
+                </div>
+
+                <button type="button" class="btn btn-success" onclick="enviarSugestao()">Enviar Sugestão</button>
+            </form>
+
+            <!-- Mensagem de sucesso -->
+            <div id="mensagemSucesso" class="alert alert-success mt-3" style="display:none;">
+                Sugestão enviada com sucesso!
+            </div>
+        </div>
+
+        <h3 class="mt-5">Lista de Sugestões</h3>
+        <ul id="listaSugestoes" class="list-group mt-3">
+            <!-- Lista de sugestões será carregada aqui -->
+        </ul>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="sugestao.js"></script>
+</body>
+</html>
